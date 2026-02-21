@@ -33,3 +33,11 @@ go.work.sum
 
 # binaries
 kk
+
+# vars file
+vars.txt
+
+# swaggers file
+swagger*
+swagger.yaml
+swaggers.txt
