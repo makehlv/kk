@@ -88,7 +88,7 @@ func (r *SwaggerRepository) LoadSpec(specPath string) ([]byte, error) {
 func (r *SwaggerRepository) swaggersPath() string {
 	p := r.config.SwaggersPath
 	if p == "" {
-		p = "swagger.txt"
+		p = "swaggers.txt"
 	}
 	if !filepath.IsAbs(p) {
 		if wd, err := os.Getwd(); err == nil {
