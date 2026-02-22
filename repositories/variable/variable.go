@@ -20,7 +20,6 @@ func (r *VariableRepository) varsPath() string {
 	return p
 }
 
-// GetVars читает файл переменных и возвращает мапу key=value. Если файла нет — пустая мапа и nil.
 func (r *VariableRepository) GetVars() (map[string]string, error) {
 	path := r.varsPath()
 	data, err := os.ReadFile(path)

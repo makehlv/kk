@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log/slog"
 	"os"
+	"sort"
 	"strings"
 
 	"github.com/makehlv/kk/clients"
@@ -87,8 +88,24 @@ func main() {
 			os.Exit(1)
 		}
 	case "var":
+		if len(os.Args) < 3 {
+			vars, err := svc.Variable.ListVars()
+			if err != nil {
+				logger.Error("var failed", "error", err)
+				os.Exit(1)
+			}
+			keys := make([]string, 0, len(vars))
+			for k := range vars {
+				keys = append(keys, k)
+			}
+			sort.Strings(keys)
+			for _, k := range keys {
+				fmt.Printf("%s=%s\n", k, vars[k])
+			}
+			break
+		}
 		if len(os.Args) < 4 {
-			fmt.Println("usage: kk var <key> <value>")
+			fmt.Println("usage: kk var [<key> <value>]")
 			os.Exit(1)
 		}
 		key := os.Args[2]
